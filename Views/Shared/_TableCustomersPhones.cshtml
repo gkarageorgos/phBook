@@ -1,0 +1,47 @@
+﻿@model PhoneBook.Models.Customer
+
+@* <div class="mt-3">
+    <a class="mt-3 btn btn-success" asp-controller="Customers" asp-action="AddPhone" asp-route-customerId="@Model.Id">Add Phone</a>
+</div> *@
+
+<partial name="_AddPhone" model='new Phone() { CustomerId = Model.Id }' />
+
+@if (Model.Phones is not null && Model.Phones.Count() > 0)
+{
+    <table class="table table-striped datatables">
+        <thead>
+            <tr>
+                <th>Phone Number</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var phone in Model.Phones)
+            {
+                <tr>
+                    <td>@phone.PhoneNumber</td>
+                    <td>
+                        <button type="button" class="mt-3 btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#EditPhoneModal"
+                                data-phone-id="@phone.Id"
+                                data-phone-number="@phone.PhoneNumber"
+                                data-phone-code-id="@phone.PhoneCodeId"
+                                data-phone-type-id="@phone.PhoneTypeId">
+                            Edit
+                        </button>
+                        <button type="button" class="mt-3 btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#DeletePhoneModal"
+                                data-phone-id="@phone.Id">
+                            Delete
+                        </button>
+                       @*  <a class="btn btn-primary" asp-controller="Customers" asp-action="EditPhone" asp-route-id="@phone.Id">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Customers" asp-action="DeletePhone" asp-route-id="@phone.Id">Delete</a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <partial name="_EditPhone" model="new Phone(){CustomerId=Model.Id}" />
+    <partial name="_DeletePhone" model="new Phone(){CustomerId=Model.Id}" />
+}

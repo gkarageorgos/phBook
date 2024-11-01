@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PhoneBook.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Customers</h1>
+
+<p>
+    <a class="btn btn-success mb-3"  asp-action="Create">Create New</a>
+</p>
+
+<table class="table table-striped datatables">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phones)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var customer in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Company.Name)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var email in customer.Emails)
+                    {
+                        <li>@email.EmailAddress</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    @foreach (var phone in customer.Phones)
+                    {
+                            <li>@phone.PhoneNumber</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@customer.Id">Edit</a>
+                <a class="btn btn-success" asp-action="Details" asp-route-id="@customer.Id">Details</a>
+                <a class ="btn btn-danger" asp-action="Delete" asp-route-id="@customer.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

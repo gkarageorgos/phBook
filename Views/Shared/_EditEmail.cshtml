@@ -1,0 +1,37 @@
+﻿@model PhoneBook.Models.Email
+
+<!-- Modal -->
+<div class="modal fade" id="EditEmailModal" tabindex="-1" aria-labelledby="EditEmailLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditEmailLabel">Edit Email</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Customers" asp-action="_EditEmail" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input type="hidden" id="email_Id" asp-for="@Model.Id" />
+                    <input type="hidden" id="email_CustomerId" asp-for="@Model.CustomerId" />
+
+                    <div class="mt-3">
+                        <label for="email_EmailAddress" asp-for="@Model.EmailAddress" class="control-label"></label>
+                        <input id="email_EmailAddress" asp-for="@Model.EmailAddress" class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-3">
+                        <label for="email_EmailTypeId" asp-for="@Model.EmailTypeId" class="control-label"></label>
+                        <select id="email_EmailTypeId" asp-for="@Model.EmailTypeId" class="form-control" asp-items="ViewBag.EmailTypeId"></select>
+                        <span asp-validation-for="EmailTypeId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-3">
+                        <input type="submit" value="Edit" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

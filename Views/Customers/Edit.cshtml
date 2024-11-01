@@ -1,0 +1,112 @@
+﻿@model PhoneBook.Models.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mt-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<partial name="_TableCustomersEmails" for="@Model"/> 
+
+<hr />
+
+<partial name="_TableCustomersPhones" for="@Model" />
+
+<div class="mt-3">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script> 
+    document.addEventListener('DOMContentLoaded', function () { 
+        const editEmailButtons = document.querySelectorAll('button[data-bs-target="#EditEmailModal"]');
+        const editPhoneButtons = document.querySelectorAll('button[data-bs-target="#EditPhoneModal"]');
+        const deleteEmailButtons = document.querySelectorAll('button[data-bs-target="#DeleteEmailModal"]');
+        const deletePhoneButtons = document.querySelectorAll('button[data-bs-target="#DeletePhoneModal"]');
+
+        editEmailButtons.forEach(button => {
+            button.addEventListener('click', function () { 
+                const emailId = button.getAttribute('data-email-id');
+                const emailAddress = button.getAttribute('data-email-address'); 
+                const emailTypeId = button.getAttribute('data-email-type-id'); 
+        
+                document.getElementById('email_Id').value = emailId; 
+                document.getElementById('email_EmailAddress').value = emailAddress; 
+                document.getElementById('email_EmailTypeId').value = emailTypeId; 
+            }); 
+        }); 
+
+        editPhoneButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const phoneId = button.getAttribute('data-phone-id');
+                const phoneNumber = button.getAttribute('data-phone-number');
+                const phoneCodeId = button.getAttribute('data-phone-code-id');
+                const phoneTypeId = button.getAttribute('data-phone-type-id');
+
+                document.getElementById('phone_Id').value = phoneId;
+                document.getElementById('phone_PhoneNumber').value = phoneNumber;
+                document.getElementById('phone_PhoneCodeId').value = phoneCodeId;
+                document.getElementById('phone_PhoneTypeId').value = phoneTypeId;
+            });
+        });
+
+        deleteEmailButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const emailId = button.getAttribute('data-email-id');
+
+                document.getElementById('del_Email_Id').value = emailId;
+            });
+        });
+
+        deletePhoneButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const phoneId = button.getAttribute('data-phone-id');
+
+                document.getElementById('del_Phone_Id').value = phoneId;
+            });
+        })
+
+
+
+    });
+</script>

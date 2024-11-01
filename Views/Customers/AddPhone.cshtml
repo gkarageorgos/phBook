@@ -1,0 +1,45 @@
+﻿@model PhoneBook.Models.Phone
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add Phone</h1>
+
+<div>
+    <form asp-action="AddPhone" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="CustomerId" />
+
+        <div class="mt-3">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mt-3">
+            <label asp-for="PhoneCodeId" class="control-label"></label>
+            <select asp-for="PhoneCodeId" class="form-control" asp-items="ViewBag.PhoneCodeId"></select>
+        </div>
+
+        <div class="mt-3">
+            <label asp-for="PhoneTypeId" class="control-label"></label>
+            <select asp-for="PhoneTypeId" class="form-control" asp-items="ViewBag.PhoneTypeId"></select>
+        </div>
+
+        <div class="mt-3">
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@ViewBag.CustomerId">Back to Customer</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

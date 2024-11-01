@@ -1,0 +1,20 @@
+﻿@model PhoneBook.Models.Phone
+
+<!-- Modal -->
+<div class="modal fade" id="DeletePhoneModal" tabindex="-1" aria-labelledby="DeletePhoneLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DeletePhoneLabel">Delete Phone</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger">Είστε σίγουροι ότι θέλετε να προχωρήσετε στην διαγραφή του τηλεφώνου;</p>
+                <form asp-action="_DeletePhone">
+                    <input type="hidden" id="del_Phone_Id" asp-for="@Model.Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

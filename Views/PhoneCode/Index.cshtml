@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PhoneBook.Models.PhoneCode>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Phone Codes</h1>
+
+<a class="btn btn-success mb-3" asp-Action="Create">Create</a>
+
+<table class="table table-striped datatables">
+
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var phoneCode in Model)
+        {
+            <tr>
+                <td>@phoneCode.Name</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@phoneCode.Id">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@phoneCode.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

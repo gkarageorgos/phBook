@@ -1,0 +1,41 @@
+﻿@model PhoneBook.Models.Phone
+
+<!-- Modal -->
+<div class="modal fade" id="EditPhoneModal" tabindex="-1" aria-labelledby="EditPhoneLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditPhoneLabel">Edit Phone</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Customers"  asp-action="_EditPhone" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input type="hidden" id="phone_Id" asp-for="@Model.Id" />
+                    <input type="hidden" id="phone_CustomerId" asp-for="@Model.CustomerId" />
+
+                    <div class="mt-3">
+                        <label for="phone_PhoneNumber" asp-for="@Model.PhoneNumber" class="control-label"></label>
+                        <input id="phone_PhoneNumber" asp-for="@Model.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-3">
+                        <label for="phone_PhoneCodeId" asp-for="@Model.PhoneCodeId" class="control-label"></label>
+                        <select id="phone_PhoneCodeId" asp-for="@Model.PhoneCodeId" class="form-control" asp-items="ViewBag.PhoneCodeId"></select>
+                    </div>
+
+                    <div class="mt-3">
+                        <label for="phone_PhoneTypeId" asp-for="@Model.PhoneTypeId" class="control-label"></label>
+                        <select id="phone_PhoneTypeId" asp-for="@Model.PhoneTypeId" class="form-control" asp-items="ViewBag.PhoneTypeId"></select>
+                    </div>
+
+                    <div class="mt-3">
+                        <input type="submit" value="Edit" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
