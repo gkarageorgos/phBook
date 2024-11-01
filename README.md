@@ -6,6 +6,23 @@ https://flukeout.github.io/
 
 https://icons.getbootstrap.com/
 
+για τα κουμπιά στους πίνακες εκτός από το αλλαγή των εικονιδίων.
+Καλό είναι να τα βάλεις μέσα σε div το οποίο θα το μορφοποιήσεις με flexbox.
+
+To flexbox και το grid είναι δύο εργαλεία που χρησιμοποιούμε πάρα πολύ στο css και θα πρέπει να εξοικειωθείς μαζί τους.
+
+Σου βάζω διάφορα references για να δεις.
+
+Ενδεικτικός οδηγός για το τι είναι το flex : https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+Youtube : https://www.youtube.com/watch?v=u044iM9xsWU
+
+Ενδεικτικός οδηγός για το τι είναι το grid : https://css-tricks.com/snippets/css/complete-guide-grid/
+
+Flexbox or grid - How to decide?
+https://www.youtube.com/watch?v=3elGSZSWTbM
+
+
+
 Θέλουμε να αλλάξουμε το πως παρουσιάζεται η edit Page του customer.
 Ιδανικά δεν θέλουμε τόσο μεγάλο ύψος.
 
